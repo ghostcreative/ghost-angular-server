@@ -57,14 +57,14 @@ function cacheControl(req, res, next) {
   next();
 }
 // Serve static files
-app.use('/assets', cacheControl, express.static(path.join(__dirname, 'assets'), {maxAge: 30}));
+app.use('/static', cacheControl, express.static(path.join(__dirname, 'static'), {maxAge: 30}));
 app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 //
 /////////////////////////
 // ** Example API
 // Notice API should be in aseparate process
-import { serverApi, createTodoApi } from './backend/api';
+import { serverApi, createTodoApi } from './api/api';
 // Our API for demos only
 app.get('/data.json', serverApi);
 app.use('/api', createTodoApi());
